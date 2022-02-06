@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/hybrid-bts/bts-trigger-image', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/hybrid-bts/bts-trigger-image']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'bts-run-deploy', '--image', 'gcr.io/hybrid-bts/bts-trigger-image', '--region', 'asia-northeast3', '--platform', 'managed', '--allow-unauthenticated']
+images:
+- gcr.io/hybrid-bts/bts-trigger-image

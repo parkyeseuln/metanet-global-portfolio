@@ -1,0 +1,39 @@
+<div class='row'>
+  <div class='col-xs-12' ng-show='!rc.reviewSent'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <h3>Review</h3>
+                <h4>Please let us know how you found 'BTS SINGLE ALBUM BUTTER[Cream + Peaches Ver.]!</h4>
+                <img src="https://storage.googleapis.com/bts-images/butter_album_image.jpeg" alt="product image" style="width:200px;height:200px;"><br><br>
+                <div class='form-group'>
+                    <select class='form-control' ng-model='rc.rating'>
+                        <option value='-1'>Rate this product</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                     </select>
+                </div>
+                <div class='form-group'>
+                    <textarea class='form-control' ng-model='rc.review'></textarea>
+                </div>
+
+                <div class='form-group'>
+                    <button class='btn btn-primary btn-block' ng-click='rc.sendReview()'>Send</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class='col-xs-12' ng-show='rc.reviewSent'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <h3>Review Sent</h3>
+                <h4>Thank-you for your feedback. Borahae!</h4>
+            </div>
+        </div>
+    </div>
+</div>

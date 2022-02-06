@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sample-job
+spec:
+  template:
+    metadata:
+      name: sample-jobs
+    spec:
+      containers:
+      - name: sample-container
+        image: gcr.io/hybrid-bts/bts-web
+      restartPolicy: OnFailure

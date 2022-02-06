@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bts-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "bts-ingress"
+spec:
+  rules:
+  - host: "review.hybridbts.net"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bts-review-service
+            port:
+              number: 80
+  - host: "*.hybridbts.net"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bts-web-service
+            port:
+              number: 80

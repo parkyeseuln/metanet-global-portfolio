@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bts-review-service
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+  labels:
+    app: bts-review
+spec:
+  type: LoadBalancer
+  selector:
+    app: bts-review
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80

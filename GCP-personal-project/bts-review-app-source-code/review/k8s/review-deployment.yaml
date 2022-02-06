@@ -1,0 +1,40 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: bts-review
+  labels:
+    app: bts-review
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bts-review
+      role: review
+  template:
+    metadata:
+      name: review
+      labels:
+        app: bts-review
+        role: review
+    spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: credentials-key
+      containers:
+      - name: bts-review
+        image: gcr.io/hybrid-bts/bts-review
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "100m"
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
+        ports:
+        - name: review
+          containerPort: 80
